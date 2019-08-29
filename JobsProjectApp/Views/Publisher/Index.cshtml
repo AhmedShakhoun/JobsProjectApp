@@ -1,0 +1,66 @@
+﻿@model IEnumerable<JobsProjectApp.Models.Jobs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Publisher Post</h2>
+<br/>
+
+
+<table class="table table-bordered text-center">
+    <tr class="btn-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.category.cat_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_requirement)
+        </th>
+        <th>Options</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.category.cat_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_requirement)
+        </td>
+        <td>
+            <div class="btn-group" role="group" aria-label="...">
+                <a class="btn btn-success" role="button" href="@Url.Action("Edit", "Jobs", new { id=item.job_id })">Edit</a>
+                <a class="btn btn-warning"style="color:white !important" role="button" href="@Url.Action("Details", "Jobs", new { id = item.job_id })">Details</a>
+                <a class="btn btn-danger" role="button" href="@Url.Action("Delete", "Jobs", new { id = item.job_id })">Delete</a>
+                <a class="btn btn-info" role="button" href="@Url.Action("GetJobApplicants", "Publisher", new { id = item.job_id })">Show Applicants</a>
+            </div>
+            
+        </td>
+    </tr>
+}
+
+</table>
+
+    <br />
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Jobs", null, new { @class = "btn btn-primary" })
+</p>

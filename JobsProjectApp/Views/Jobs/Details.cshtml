@@ -1,0 +1,65 @@
+﻿<html>
+<head>
+    <style>
+        .btn-primary {
+            padding: 1px 30px 10px 20px;
+        }
+
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+
+@model JobsProjectApp.Models.Jobs
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details Of Job</h2>
+
+<div>
+    
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+           <h4> @Html.DisplayNameFor(model => model.category.cat_name)</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.cat_name)
+        </dd>
+
+        <dt>
+            <h4> @Html.DisplayNameFor(model => model.job_title)</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_title)
+        </dd>
+
+        <dt>
+            <h4> @Html.DisplayNameFor(model => model.job_description)</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_description)
+        </dd>
+
+
+        <dt>
+            <h4>  @Html.DisplayNameFor(model => model.job_requirement)</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_requirement)
+        </dd>
+    </dl>
+    <div></div>
+</div>
+<p>
+    @Html.ActionLink("Apply", "ApplyForJob", "Jobs", new { id = Model.job_id }, new { @class = "btn btn-primary" })
+    @*@Html.ActionLink("Back to List", "JobsInCategories","Jobs",new {@class ="btn btn-success" })*@
+    @Html.ActionLink("Back to List", "Index", "Publisher", null, new { href = Request.UrlReferrer, @class = "btn btn-warning Btn" })
+</p>
+</html>

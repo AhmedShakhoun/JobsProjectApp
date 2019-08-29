@@ -1,0 +1,53 @@
+﻿<html>
+<head>
+    <style>
+        .btn-primary {
+            padding: 1px 30px 10px 20px;
+        }
+
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+
+@model JobsProjectApp.ViewModels.ApplicantProfileViewModel
+@{
+    ViewBag.Title = "ShowApplicantProfile";
+}
+
+<h2>@Html.DisplayFor(m => m.Username) Profile</h2>
+<p>
+    <h3>
+        Job Title : @Html.DisplayFor(m => m.Job_title)
+    </h3>
+</p>
+<div class="dl-horizontal">
+    <div>
+        <p><h4>Applicant Name : </h4></p>
+        <p>@Html.DisplayFor(m => m.Username)</p>
+    </div>
+    <div>
+        <p><h4>Qualifications : </h4></p>
+        <p>@Html.DisplayFor(m => m.Qualification)</p>
+    </div>
+
+    <div>
+        <p>
+            <a href="~/CV/@Html.DisplayFor(m => m.cv)" target="_blank">Show CV</a>
+        </p>
+    </div>
+
+</div>
+<div>
+    <a class="btn btn-success" role="button" href="@Url.Action("AcceptProfile", "Publisher", new {user_id = Model.User_id, job_id = Model.Job_id})">Accept</a>
+    <a class="btn btn-danger" role="button" href="@Url.Action("RejectProfile", "Publisher", new {user_id = Model.User_id, job_id = Model.Job_id})">Reject</a>
+</div>
+<p>
+    <br />
+    @Html.ActionLink("Back To " + Model.Job_title + " Applicants List", "GetJobApplicants", "Publisher", new { id = Model.Job_id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Go To Your Posted Jobs", "Index", "Publisher", new { @class = "btn btn-warning Btn" })
+    <br />
+</p>
+<div><br /><br /></div>
+</html>

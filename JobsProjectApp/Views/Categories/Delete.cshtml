@@ -1,0 +1,55 @@
+﻿<html>
+<head>
+    <style>
+        .btn-primary {
+            padding: 1px 30px 10px 20px;
+        }
+
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+@model JobsProjectApp.Models.Categories
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Category</h2>
+
+
+<div>
+
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.cat_id)*@
+            <h4> Category Id</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat_id)
+        </dd>
+
+        <dt>
+            <h4> @Html.DisplayNameFor(model => model.cat_name)</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning Btn" })
+        </div>
+    }
+</div>
+</html>

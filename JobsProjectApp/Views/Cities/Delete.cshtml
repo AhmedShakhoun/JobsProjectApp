@@ -1,0 +1,46 @@
+﻿<html>
+<head>
+    <style>
+        .btn-primary {
+            padding: 1px 30px 10px 20px;
+        }
+
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+@model JobsProjectApp.Models.Cities
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete City</h2>
+
+
+<div>
+
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cityName)
+        </dt>
+        <br />
+        <dd>
+            @Html.DisplayFor(model => model.cityName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning Btn" })
+        </div>
+    }
+</div>
+</html>

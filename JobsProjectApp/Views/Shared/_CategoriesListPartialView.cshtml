@@ -1,0 +1,10 @@
+﻿
+@if(ViewBag.CategoryList != null)
+{
+    foreach (var item in ViewBag.CategoryList)
+    {
+        string cat = item.Text;
+        @*<li>@Html.ActionLink("" + cat, "JobsInCategories", "Jobs", new { id = @item.Value })</li>*@
+        <li><a  href="@Url.Action("JobsInCategories","Jobs", new { id = item.Value })">@cat</a></li>
+    }
+}

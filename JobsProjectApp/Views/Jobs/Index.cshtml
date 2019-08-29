@@ -1,0 +1,67 @@
+﻿<html>
+<head>
+    <style>
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+
+@model IEnumerable<JobsProjectApp.Models.Jobs>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Jobs Management</h2>
+<br />
+
+<table class="table table-bordered">
+    <tr class="btn-warning">
+        <th>
+            @Html.DisplayNameFor(model => model.category.cat_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_requirement)
+        </th>
+        <th>Options</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.category.cat_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.job_title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.job_description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.job_requirement)
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="...">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.job_id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Details", "Details", new { id = item.job_id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.job_id }, new { @class = "btn btn-danger" })
+                    </div>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.job_id }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Details", "Details", new { id = item.job_id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.job_id }, new { @class = "btn btn-danger" })*@
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning Btn" })
+</p>
+</html>

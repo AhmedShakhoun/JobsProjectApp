@@ -1,0 +1,46 @@
+﻿<html>
+<head>
+    <style>
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+
+@model IEnumerable<JobsProjectApp.Models.Countries>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Countries Management</h2>
+<br />
+
+<table class="table table-bordered text-center">
+    <tr class="btn-primary">
+        <th>
+            @*<h4>@Html.DisplayNameFor(model => model.countryName)</h4>*@
+            <h4>Country Name</h4>
+        </th>
+        <th><h4>Options</h4></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.countryName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CountryId }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Details", "Details", new { id = item.CountryId }, new { @class = "btn btn-warning Btn" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.CountryId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+</html>

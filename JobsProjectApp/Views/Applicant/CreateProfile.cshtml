@@ -1,0 +1,65 @@
+﻿@model JobsProjectApp.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "CreateProfile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Create Profile</h2>
+<br/>
+@using (Html.BeginForm(Html.BeginForm("SubmitProfile", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" })))
+{
+    <div class="form-group">
+        <h4> @Html.LabelFor(model => model.Qualification, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Qualification, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <h4>  @Html.LabelFor(model => model.CV, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+        <div class="col-md-10">
+            <input type="file" id="cv" name="upload" />
+            @Html.ValidationMessageFor(model => model.CV, "", new { @class = "text-danger" })
+            <br />
+            <label class="text-danger" id="err-view"></label>
+        </div>
+    </div>
+
+    @*<div class="alert alert-danger" id="div-error" style="display:none;">
+        <span id="err-view">
+
+        </span>
+    </div>*@
+
+    <div class="form-group">
+        <input type="submit" value="Submit" id="save" class="btn btn-primary" />
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $("#save").click(function () {
+                //check if image is empty
+                if ($("#cv").val() == "") {
+                    //$("#div-error").fadeIn();
+                    $("#err-view").empty();
+                    $("#err-view").append("You must upload your cv");
+                    return false;
+                }
+
+                //check if cv is pdf
+                var filename = document.getElementById("cv").value;
+                var imageExtension = filename.substr(filename.indexOf('.') + 1);
+                if (imageExtension != 'pdf') {
+                    //$("#div-error").fadeIn();
+                    $("#err-view").empty();
+                    $("#err-view").append("CV must be PDF");
+                    return false;
+                }
+            })
+        });
+
+    </script>

@@ -1,0 +1,68 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+    <style>
+        .template-btn{
+         padding:5px 30px 10px 20px !important;
+         
+        }
+        #loginLink{
+            background:#3385ff !important;
+            padding:5px 30px 10px 20px !important;
+            color:white !important;
+            margin-bottom:15px;
+             
+        }
+        .dropdown{
+            padding-left:300px !important;
+        }
+    </style>
+</head>
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using JobsProjectApp.Models;
+
+@if (Request.IsAuthenticated)
+{
+    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = manager.FindById(User.Identity.GetUserId());
+    
+        <li>
+            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            <i class="fas fa-user-circle"></i>
+            <a href="#">@User.Identity.GetUserName()</a>
+            <ul class="sub-menu">
+                @if (currentUser.UserType == "Applicant")
+                    {
+                    <li><a class="dropdown-item" href="@Url.Action("ShowApplicantJobs", "Applicant")">Show Applied Jobs</a></li>
+                }
+                else if (currentUser.UserType == "Publisher")
+                {
+                    <li><a class="dropdown-item" href="@Url.Action("Index", "Publisher")">Show your Posted Jobs</a></li>
+                }
+                else
+                {
+                    <li><a class="dropdown-item" href="@Url.Action("Index", "Categories")">Manage Jobs Categories</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Index", "Countries")">Countries Management</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Index", "Cities")">Cities Management</a></li>
+                }
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                }
+            </ul>
+
+        </li>
+}
+else
+{
+    <li>
+        @Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        @Html.ActionLink("SIGN UP", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "template-btn" })
+    </li>
+}
+
+</html>

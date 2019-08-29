@@ -1,0 +1,74 @@
+﻿<html>
+<head>
+    
+    <style>
+       
+
+
+.row {
+    margin-left: -7px;
+    margin-right: -7px;
+}
+.content-card {
+    margin-top: 14px;
+}
+.blank-title {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.col-sm-8 {
+    width: 66.66667%;
+}
+p {
+    margin: 0 0 10.5px;
+}
+.h3, h3 {
+    font-size: 24px;
+}
+    </style>
+</head>
+@{
+    ViewBag.Title = "About";
+}
+
+<div class="contact-form">
+
+<div class="row">
+    <div class="content-card">
+        <div class="about-us-wrap clearfix">
+            <h3 class="col-sm-12 blank-title">About Us</h3>
+            <div class="col-sm-8">
+                <p style="margin-bottom:0px">
+                    COMPORT is a leading job site with millions of job listings from thousands of websites,
+                     including company career sites,job boards, newspaper classifieds, associations,
+                     and other online sources of job postings. Users can also upload a resume and get
+                     a personalized resume link to share with employers. You can also apply for jobs,
+                     research salaries and job trends, set up job alerts...
+                    </p>
+                <p>
+                    <h3 class="page-title-text">Looking for a job?</h3>
+                </p>
+                <p>
+                    If you are searching for a new career opportunity, 
+                     You can also @Html.ActionLink("Sign Up here", "Register","Account")to be alerted of new jobs by email.
+                </p> 
+                <p>
+                    <h3 class="page-title-text">Other inquiries?</h3>
+                </p>
+                <p>
+                    If you have any other inquiries, please contact us
+                    @Html.ActionLink("here", "Contact")
+                </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    </div>
+</html>

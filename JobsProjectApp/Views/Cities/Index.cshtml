@@ -1,0 +1,46 @@
+﻿<html>
+<head>
+    <style>
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+
+@model IEnumerable<JobsProjectApp.Models.Cities>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cities Management</h2>
+<br/>
+
+<table class="table table-bordered text-center">
+    <tr class="btn-info">
+        <th>
+            @*@Html.DisplayNameFor(model => model.cityName)*@
+            <h4>City Name</h4>
+        </th>
+        <th><h4>Option</h4></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cityName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.cityId }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Details", "Details", new { id = item.cityId }, new { @class = "btn btn-warning Btn" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.cityId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info Btn" })
+</p>
+</html>

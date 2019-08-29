@@ -1,0 +1,36 @@
+﻿@model IEnumerable<JobsProjectApp.ViewModels.JobApplicantsViewModel>
+@{
+    ViewBag.Title = "GetJobApplicants";
+}
+
+<h2>Applicant Job</h2>
+<br/>
+
+<table class="table table-bordered table-hover">
+    <tr class="btn-primary">
+        
+        <th>
+            @*@Html.DisplayNameFor(model => model.User_Name)*@
+            <h4>User Name</h4>
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Show Profile", "ShowApplicantProfile", "Publisher", new { user_id = item.User_Id, job_id = item.Job_Id}, null)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to your posted jobs", "Index", "Publisher", new { @class = "btn btn-primary" })
+</p>

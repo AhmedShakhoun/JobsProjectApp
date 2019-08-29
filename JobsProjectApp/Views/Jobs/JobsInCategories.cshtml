@@ -1,0 +1,48 @@
+﻿<html>
+<head>
+    <style>
+        .Btn {
+            color: white !important;
+        }
+    </style>
+</head>
+@model IEnumerable<JobsProjectApp.Models.Jobs>
+
+@{
+    ViewBag.Title = "JobsInCategories";
+}
+
+<h2>@Model.FirstOrDefault().category.cat_name Jobs</h2>
+<br />
+<br />
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.category.cat_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.job_title)
+            </th>
+            <th>Details</th>
+        </tr>
+    </table>*@
+<p>
+    @Html.ActionLink("Add Job", "Create", "Jobs", new { @class = "btn btn-warning" })
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 thumbnail card" style="margin-left:20px;margin-bottom:30px;">
+            <div class="card-body" style="width: 18rem;">
+                <h4> @Html.DisplayFor(modelItem => item.job_title)</h4>
+                <small class="card-text">@Html.DisplayFor(modelItem => item.job_description)</small>
+                <br /><br />
+                @Html.ActionLink("Details", "Details", new { id = item.job_id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete Job", "Delete","Jobs",new { id = item.job_id },new { @class = "btn btn-danger" })
+            </div>
+            @*<h3> @Html.DisplayFor(modelItem => item.category.cat_name)</h3>*@
+
+        </div>
+    }
+</div>
+</html>

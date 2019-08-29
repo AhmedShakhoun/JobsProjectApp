@@ -1,0 +1,26 @@
+﻿@model JobsProjectApp.Models.Cities
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details City</h2>
+
+<div>
+    
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            @Model.country.countryName
+        </dt>
+        <br />
+        <dd>
+            @Model.cityName
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.cityId })*@ 
+    @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-primary" })
+</p>
